@@ -1,12 +1,16 @@
 import sqlite3
 
 def insertar_coches():
+    #Abre el archivo de texto coches.txt
+    #Lee las líneas del archivo
     with open('./bdCoches/coches.txt', 'r') as e:
         datos = e.readlines()
     
     for d in datos:
+        #Separa los elementos
         lDatos = d.split('|')
         
+        #Añade los elementos a la tabla coches de la base de datos Maputo S.L.
         conn = sqlite3.connect('Maputo S.L..db')
         cursor = conn.cursor()
         
