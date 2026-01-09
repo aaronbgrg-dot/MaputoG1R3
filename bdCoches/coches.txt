@@ -1,0 +1,5 @@
+Ferrari|Ferrari 488 GTB|2015|3.9L|20"|7 Velocidades|Dual-Clutch|Monocasco|Sintetico de Alta Performance|Doble Embrague
+Bugatti|Bugatti Chiron Super Sport|2021|8.0L|N/A|7 Velocidades|DSG|Monocasco|Sintetico de Competición|Embrague Múltiple
+Aston Martin|Aston Martin DBX 707|2022|4.0L|23"|9 Velocidades|Automatico|N/A|Sintetico de Alta Performance|Multidisco
+Range Rover|Range Rover SV LWB|2025|5.0L|21-23"|8 Velocidades|Automatico|Monocoque|Sintetico|Convertidor de par
+Lotus|Lotus Evija|2025|Electrico|20-21"|Sin Cambios|Electrica|Monocasco|Ninguno|N/A
