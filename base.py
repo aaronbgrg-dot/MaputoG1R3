@@ -1,9 +1,10 @@
 import sqlite3 as sql
 
 
+BASE = 'Maputo_SL.db'
 
 def crearBD():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     conn.commit()
@@ -11,7 +12,7 @@ def crearBD():
     
 
 def tablaCoche():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     cursor.execute(
@@ -33,7 +34,7 @@ def tablaCoche():
     conn.close()
 
 def tablaError():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     cursor.execute(
@@ -52,7 +53,7 @@ def tablaError():
     conn.close()
 
 def tablaMontaje():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     cursor.execute(
@@ -63,12 +64,13 @@ def tablaMontaje():
             Id_Coche INTEGER NOT NULL,
             Horas INTEGER,
             PrecioHora INTEGER,
+            Status text,
             foreign key (Id_Coche) references coches(Id_Coche)                         
         )"""
         )
     
 def tablaPintado():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     cursor.execute(
@@ -79,12 +81,13 @@ def tablaPintado():
             Id_Coche INTEGER NOT NULL,
             Horas INTEGER,
             PrecioHora INTEGER,
+            Status text,
             foreign key (Id_Coche) references coches(Id_Coche)                         
         )"""
         )
     
 def tablaAcabado():
-    conn = sql.connect("Maputo S.L..db")
+    conn = sql.connect(BASE)
     cursor = conn.cursor()
     cursor.execute('PRAGMA foreing_keys = ON;')
     cursor.execute(
@@ -95,6 +98,7 @@ def tablaAcabado():
             Id_Coche INTEGER NOT NULL,
             Horas INTEGER,
             PrecioHora INTEGER,
+            Status text,
             foreign key (Id_Coche) references coches(Id_Coche)                         
         )"""
         )

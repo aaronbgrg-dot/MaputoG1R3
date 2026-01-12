@@ -1,5 +1,7 @@
 import sqlite3
 
+BASE = 'Maputo_SL.db'
+
 def insertar_coches():
     #Abre el archivo de texto coches.txt
     #Lee las líneas del archivo
@@ -11,7 +13,7 @@ def insertar_coches():
         lDatos = d.split('|')
         
         #Añade los elementos a la tabla coches de la base de datos Maputo S.L.
-        conn = sqlite3.connect('Maputo S.L..db')
+        conn = sqlite3.connect(BASE)
         cursor = conn.cursor()
         
         cursor.execute(f"""
