@@ -31,11 +31,8 @@ def login_menu():
     system('cls')
     # Imprime fecha/hora y varias líneas de texto
     print(f'{FECHA:>104}')
-    print(f'{HORA:>104}')
-    print('')
-    print(f'{'Introduzca usuario y contraseña:':^104}')
-    print('')
-    print('')
+    print(f'{HORA:>104}\n')
+    print(f'{'Introduzca usuario y contraseña:':^104}\n\n')
     # Pide usuario y contraseña
     user = str(input(f'{'Usuario: ':>53}'))
     psw = int(input(f'{'Contraseña: ':>54}'))
@@ -72,17 +69,13 @@ def user_menu():
     # Usuario actual, puesto del usuario, fecha actual, y hora actual
     system('cls')
     print(f'Usuario actual: {user.capitalize()}{FECHA:>94}')
-    print(f'Puesto: {config['puesto'][user.lower()].capitalize()}{HORA:>101}')
-    print('')
-    print('')
+    print(f'Puesto: {config['puesto'][user.lower()].capitalize()}{HORA:>101}\n\n')
     # Imprime las diferentes opciones que puede tomar el usuario
     print(f'{'Bienvenido/a ' + str(user.capitalize()):^104}')
-    print(f'{'¿Que desea hacer?':^104}')
-    print('')
+    print(f'{'¿Que desea hacer?':^104}\n')
     print(f'{'1. Ir al menú principal':^104}')
     print(f'{'2. Generar contraseña nueva':^104}')
-    print(f'{'3. Cerrar Sesión':^104}')
-    print('')
+    print(f'{'3. Cerrar Sesión':^104}\n')
     # Pide la opción y salta a la función user_option() para ejecutar la opción
     opcion = int(input(f'{'>'*3:>51} '))
     user_option()
@@ -110,12 +103,11 @@ def user_option():
                 user_menu()
             case 3:
                 # Da un mensaje de despedida y termina la ejecución del script forzosamente
-                print('')
-                print(f'{'Gracias por usar el programa, vuelva pronto :)':^104}')
+                print(f'\n{'Gracias por usar el programa, vuelva pronto :)':^104}')
                 exit()
             case _:
                 # Si el usuario introduce un valor incorrecto da un mensaje de error y pide un nuevo valor
                 print(f'{'ERROR: Introduce una opción válida':^104}')
-                opcion = input(f'{'>'*3:>51} ')
+                opcion = int(input(f'{'>'*3:>51} '))
 
 login_menu()
