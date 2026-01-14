@@ -110,4 +110,5 @@ def user_option():
                 print(f'{'ERROR: Introduce una opción válida':^104}')
                 opcion = int(input(f'{'>'*3:>51} '))
 
-login_menu()
+if __name__ == '__main__':
+    login_menu()
