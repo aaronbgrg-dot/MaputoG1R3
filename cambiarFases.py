@@ -11,11 +11,12 @@ def insertarMontaje():
     horas = input("Cuantas horas va a estar? >> ")
     # Genera un número aleatorio y si se cumple la condicion muestra un mensaje de error
     numRandom = random.random()
-    if numRandom < 0.10 :
+    if numRandom < 0.30 :
         error = input("Ha saltado un error. Cual ha sido el motivo? >> ")
         cursor.execute(f"""INSERT INTO error (Id_Coche, Contador, Motivo) VALUES ({coche}, 1, "{error}")""")
+    else:
     # Inserta los valores de las variables 'coche' y 'horas' a la tabla "montaje" de la base de datos
-    cursor.execute(f"""INSERT INTO montaje (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},30,'Activo')""")
+        cursor.execute(f"""INSERT INTO montaje (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},30,'Activo')""")
     conn.commit()
     conn.close()
 
@@ -28,11 +29,12 @@ def insertarPintado():
     horas = input("Cuantas horas va a estar? >> ")
     # Genera un número aleatorio y si se cumple la condicion muestra un mensaje de error
     numRandom = random.random()
-    if numRandom < 0.10 :
+    if numRandom < 0.30 :
         error = input("Ha saltado un error. Cual ha sido el motivo? >> ")
         cursor.execute(f"""INSERT INTO error (Id_Coche, Contador, Motivo) VALUES ({coche}, 1, "{error}")""")
     # Inserta los valores de las variables 'coche' y 'horas' a la tabla "pintado" de la base de datos
-    cursor.execute(f"""INSERT INTO pintado (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},20,'Activo')""")
+    else:
+        cursor.execute(f"""INSERT INTO pintado (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},20,'Activo')""")
     conn.commit()
     conn.close()
 
@@ -45,11 +47,12 @@ def insertarAcabado():
     horas = input("Cuantas horas va a estar? >> ")
     # Genera un número aleatorio y si se cumple la condicion muestra un mensaje de error
     numRandom = random.random()
-    if numRandom < 0.10 :
+    if numRandom < 0.30 :
         error = input("Ha saltado un error. Cual ha sido el motivo? >> ")
         cursor.execute(f"""INSERT INTO error (Id_Coche, Contador, Motivo) VALUES ({coche}, 1, "{error}")""")
+    else:
     # Inserta los valores de las variables 'coche' y 'horas' a la tabla "acabado" de la base de datos
-    cursor.execute(f"""INSERT INTO acabado (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},10,'Activo')""")
+        cursor.execute(f"""INSERT INTO acabado (Id_Coche, Horas, PrecioHora, Status) VALUES ({coche},{horas},10,'Activo')""")
     conn.commit()
     conn.close()
 
