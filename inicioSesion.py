@@ -9,6 +9,7 @@ import base as bs # <-- para ejecutar funciones del archivo base.py
 import cambiarFases as cf # <-- para ejecutar funciones del archivo cambiarFases.py
 from bdCoches import cribado # <-- para ejecutar funciones del archivo cribado.py
 import querysBD as qs
+
 # Formatear la fecha actual
 fecha_hora = datetime.datetime.now()
 FECHA = fecha_hora.strftime("%d/%m/%Y")
@@ -31,13 +32,13 @@ def login_menu():
     print(f'{HORA:>104}\n')
     print(f'{'Introduzca usuario y contraseña:':^104}\n\n')
     # Pide usuario y contraseña
-    user = str(input(f'{'Usuario: ':>53}'))
+    user = str(input(f'{'Usuario: ':>53}')).lower().strip()
     psw = int(input(f'{'Contraseña: ':>54}'))
     # Revisa usuario/contraseña
     match user:
         case user if user not in config['users']:
             login_error()
-        case user if psw != config['users'][f'{user.lower().strip()}']:
+        case user if psw != config['users'][f'{user}']:
             login_error()
         case _:
             num_error = 0
@@ -105,13 +106,34 @@ def user_option():
                 print(f'{'ERROR: Introduce una opción válida':^104}')
                 opcion = int(input(f'{'>'*3:>51} '))
 
+def query_errores():
+    global elec
+    system('cls')
+    print(f'{"¿QUE QUIERES HACER?":^104}\n{"1. VISUALIZACION DE ERRORES":^104}\n{"2. CONTADOR DE ERROES":^104}\n{"3. VOLVER":^104}')
+    error = int(input(f"{'>'*3:>51} "))
+    while True:
+        match error:
+            case 1:
+                qs.solicitarErrores()
+                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
+                error = int(input(f"{'>'*3:>51} "))
+            case 2:
+                qs.contadorErroes()
+                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
+                error = int(input(f"{'>'*3:>51} "))
+            case 3:
+                main_menu()
+            case _:
+                print('ERROR: Introduce un valor correcto')
+                error = int(input(f"{'>'*3:>51} "))
+
 def main_menu():
     global elec
     # Limpia la pantalla y muestra un mensaje de bienvenida y pide un input
     system('cls')
     print(f'{"---- BIENVENIDO ----":^104}\n')
     print(f'{"QUE OPCION QUIERES ELEGIR?":^104}\n')
-    print(f'{"1. crear base de datos":^104}\n{"2. MONTADO":^104}\n{"3. PINTADO":^104}\n{"4. ACABADO":^104}\n{"5. ERROREs":^104}\n{"6. VOLVER":^104}\n')
+    print(f'{"1. CREAR BASE DE DATOS":^104}\n{"2. MONTADO":^104}\n{"3. PINTADO":^104}\n{"4. ACABADO":^104}\n{"5. ERRORES":^104}\n{"6. VOLVER":^104}\n')
     elec = int(input(f"{'>'*3:>51} "))
     while True:
         # Dependiendo del valor de la variable 'elec' hace lo siguiente:
@@ -142,17 +164,9 @@ def main_menu():
                 user_menu()
             case 5:
                 #seleccionas de que coche quieres visionar los errores
-                print((f'{"¿QUE QUIERES HACER?":^104}\n {"1. VISUALIZACION DE ERRORES":^104} \n {"2. CONTADOR DE ERROES":^104}'))
-                error = int(input(f"{'>'*3:>51} "))
-                match error:
-                    case 1:
-                        qs.solicitarErrores()
-                        print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
-                        elec = int(input(f"{'>'*3:>51} "))
-                    case 2:
-                        qs.contadorErroes()
-                        print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
-                        elec = int(input(f"{'>'*3:>51} "))
+                query_errores()
+                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
+                elec = int(input(f"{'>'*3:>51} "))
             case _:
                 # Muestra un mensaje de error y pide otro input
                 print(f'\n{"ERROR: Introduce un valor válido":^104}')
