@@ -142,9 +142,17 @@ def main_menu():
                 user_menu()
             case 5:
                 #seleccionas de que coche quieres visionar los errores
-                qs.solicitarErrores()
-                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
-                elec = int(input(f"{'>'*3:>51} "))
+                print((f'{"¿QUE QUIERES HACER?":^104}\n {"1. VISUALIZACION DE ERRORES":^104} \n {"2. CONTADOR DE ERROES":^104}'))
+                error = int(input(f"{'>'*3:>51} "))
+                match error:
+                    case 1:
+                        qs.solicitarErrores()
+                        print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
+                        elec = int(input(f"{'>'*3:>51} "))
+                    case 2:
+                        qs.contadorErroes()
+                        print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
+                        elec = int(input(f"{'>'*3:>51} "))
             case _:
                 # Muestra un mensaje de error y pide otro input
                 print(f'\n{"ERROR: Introduce un valor válido":^104}')
