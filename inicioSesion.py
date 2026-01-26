@@ -8,7 +8,8 @@ from sys import exit # <-- para finalizar la ejecución del script de manera for
 import base as bs # <-- para ejecutar funciones del archivo base.py
 import cambiarFases as cf # <-- para ejecutar funciones del archivo cambiarFases.py
 from bdCoches import cribado # <-- para ejecutar funciones del archivo cribado.py
-import querysBD as qs
+import querysBD as qs # <-- para ejecutar funciones del archivo querysBD.py
+import calculadora # <-- para ejecutar funciones del archivo calculadora.py
 
 # Formatear la fecha actual
 fecha_hora = datetime.datetime.now()
@@ -72,8 +73,9 @@ def user_menu():
     print(f'{'Bienvenido/a ' + str(user.capitalize()):^104}')
     print(f'{'¿Que desea hacer?':^104}\n')
     print(f'{'1. Realizar operaciones':^104}')
-    print(f'{'2. Generar contraseña nueva':^104}')
-    print(f'{'3. Cerrar Sesión':^104}\n')
+    print(f'{'2. Calculadora de precios':^104}')
+    print(f'{'3. Generar contraseña nueva':^104}')
+    print(f'{'4. Cerrar Sesión':^104}\n')
     # Pide la opción y salta a la función user_option() para ejecutar la opción
     opcion = int(input(f'{'>'*3:>51} '))
     user_option()
@@ -87,6 +89,11 @@ def user_option():
             case 1:
                 main_menu()
             case 2:
+                calculadora.ejecutar_comparador()
+                print(f'\n{"Volviendo al menu principal...":^104}')
+                time.sleep(6)
+                user_menu()
+            case 3:
                 # Genera una contraseña nueva entre los posibles valores 0000 y 9999
                 new_psw = randrange(0000, 9999, 1)
                 # Guarda la nueva contraseña y sobreescribe el archivo config.json para guardar la nueva contraseña entre ejecuciones
@@ -97,7 +104,7 @@ def user_option():
                 print(f'{'Contraseña cambiada a: ' + str(new_psw):^104}')
                 input(f'{'Pulse culaquier tecla para continuar:':^104}')
                 user_menu()
-            case 3:
+            case 4:
                 # Da un mensaje de despedida y termina la ejecución del script forzosamente
                 print(f'\n{'Gracias por usar el programa, vuelva pronto :)':^104}')
                 exit()
@@ -106,24 +113,32 @@ def user_option():
                 print(f'{'ERROR: Introduce una opción válida':^104}')
                 opcion = int(input(f'{'>'*3:>51} '))
 
+# Función que controla las opciones de visualización de errores
 def query_errores():
     global elec
+    # Limpia pantalla e imprime las diferentes opciones y pide un input 
     system('cls')
-    print(f'{"¿QUE QUIERES HACER?":^104}\n{"1. VISUALIZACION DE ERRORES":^104}\n{"2. CONTADOR DE ERROES":^104}\n{"3. VOLVER":^104}')
+    print(f'{"¿QUE QUIERES HACER?":^104}\n{"1. VISUALIZACION DE ERRORES":^104}\n{"2. CONTADOR DE ERROES":^104}\n')
     error = int(input(f"{'>'*3:>51} "))
     while True:
         match error:
+            # Dependiendo del valor de la variable 'error' hace lo siguiente:
             case 1:
+                # Ejecuta la función 'solicitarErrores' del archivo querysBD.py
                 qs.solicitarErrores()
-                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
-                error = int(input(f"{'>'*3:>51} "))
+                # Una vez finalizada la ejecución muestra un mensaje, espera 4 segundos y vuelve al main_menu 
+                print(f'\n{"OPERACIÓN FINALIZADA: VOLVIENDO...":^104}')
+                time.sleep(4)
+                main_menu()
             case 2:
-                qs.contadorErroes()
-                print(f'\n{"OPERACIÓN FINALIZADA: QUE OTRA OPCION DESEAS REALIZAR?":^104}')
-                error = int(input(f"{'>'*3:>51} "))
-            case 3:
+                # Ejecuta la función 'contadorErrores' del archivo querysBD.py
+                qs.contadorErrores()
+                # Una vez finalizada la ejecución muestra un mensaje, espera 4 segundos y vuelve al main_menu
+                print(f'\n{"OPERACIÓN FINALIZADA: VOLVIENDO...":^104}')
+                time.sleep(4)
                 main_menu()
             case _:
+                # Si el usuario introduce un valor incorrecto muestra un mensaje de error y pide un nuevo input
                 print('ERROR: Introduce un valor correcto')
                 error = int(input(f"{'>'*3:>51} "))
 

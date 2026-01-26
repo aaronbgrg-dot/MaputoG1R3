@@ -20,7 +20,7 @@ def solicitarErrores():
     conn.commit() 
     conn.close
 
-def contadorErroes():
+def contadorErrores():
     conn = sql.connect(BASE)
     cursor = conn.cursor()
     coche = int(input("De que coche quieres sacar los errores? >> "))
