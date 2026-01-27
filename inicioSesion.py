@@ -2,7 +2,7 @@
 import json # <-- JSON para poder trabajar con archivos .json
 import datetime # <-- para recoger los datos de la fecha/hora actual
 import time # <-- para 'dormir' la ejecución del script en ciertos puntos 
-from os import system # <-- para usar el comando 'cls' para limpiar pantalla
+import os # <-- para poder usar los comandos necesarios para limpiar pantalla
 from random import randrange # <-- para crear una contraseña 'random'
 from sys import exit # <-- para finalizar la ejecución del script de manera forzosa
 import base as bs # <-- para ejecutar funciones del archivo base.py
@@ -23,11 +23,15 @@ num_error = 0
 with open("config.json", "r") as f:
     config = json.load(f)
 
+def limpiar():
+    if os.name == 'nt': os.system('cls')
+    else: os.system('clear')
+
 # Funcion menú login
 def login_menu():
     global user, psw, num_error, FECHA, HORA
     # Limpia pantalla
-    system('cls')
+    limpiar()
     # Imprime fecha/hora y varias líneas de texto
     print(f'{FECHA:>104}')
     print(f'{HORA:>104}\n')
@@ -66,7 +70,7 @@ def user_menu():
     global FECHA, HORA, opcion
     # Limpia la pantalla e imprime la siguiente información en las esquinas de la pantalla:
     # Usuario actual, puesto del usuario, fecha actual, y hora actual
-    system('cls')
+    limpiar()
     print(f'Usuario actual: {user.capitalize()}{FECHA:>94}')
     print(f'Puesto: {config['puesto'][user.lower()].capitalize()}{HORA:>101}\n\n')
     # Imprime las diferentes opciones que puede tomar el usuario
@@ -107,6 +111,7 @@ def user_option():
             case 4:
                 # Da un mensaje de despedida y termina la ejecución del script forzosamente
                 print(f'\n{'Gracias por usar el programa, vuelva pronto :)':^104}')
+                time.sleep(2)
                 exit()
             case _:
                 # Si el usuario introduce un valor incorrecto da un mensaje de error y pide un nuevo valor
@@ -117,7 +122,7 @@ def user_option():
 def query_errores():
     global elec
     # Limpia pantalla e imprime las diferentes opciones y pide un input 
-    system('cls')
+    limpiar()
     print(f'{"¿QUE QUIERES HACER?":^104}\n{"1. VISUALIZACION DE ERRORES":^104}\n{"2. CONTADOR DE ERROES":^104}\n')
     error = int(input(f"{'>'*3:>51} "))
     while True:
@@ -145,7 +150,7 @@ def query_errores():
 def main_menu():
     global elec
     # Limpia la pantalla y muestra un mensaje de bienvenida y pide un input
-    system('cls')
+    limpiar()
     print(f'{"---- BIENVENIDO ----":^104}\n')
     print(f'{"QUE OPCION QUIERES ELEGIR?":^104}\n')
     print(f'{"1. CREAR BASE DE DATOS":^104}\n{"2. MONTADO":^104}\n{"3. PINTADO":^104}\n{"4. ACABADO":^104}\n{"5. ERRORES":^104}\n{"6. VOLVER":^104}\n')
