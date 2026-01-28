@@ -1,9 +1,3 @@
-titulo: nombre de grupo e integrantes
-contenidos:
-  · funcionamiento del script (general)
-  · funcionemiento del script (específico)
-  · formato apariencia
-  · apartados por persona
 # Maputo (Grupo 1)
 Proyecto de python realizado para el Reto 3 del centro de FP Cebanc por:
 + Unai Manterola
